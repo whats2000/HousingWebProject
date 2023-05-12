@@ -1,4 +1,4 @@
-date,address,floor,type,age,twPing,bedRoom,livingRoom,restRoom,funiture,elevator,parkingSpace,price
+date,address,floor,type,age,twPing,bedRoom,livingRoom,restRoom,furniture,elevator,parkingSpace,price
 2021-10-29,台北市中山區吉林路２４號６樓之２,6,住宅,46,28.444076034330003,2,1,0,1,1,0,37000.0
 2021-10-29,台北市內湖區環山路二段２６巷４號四樓,4,住宅,42,28.13552602311,3,1,1,1,0,0,27000.0
 2021-11-03,台北市中山區新生北路二段６６號七樓之２４,7,住宅,43,7.18740026136,1,0,1,1,1,0,7500.0

@@ -1,4 +1,4 @@
-date,address,floor,type,age,twPing,bedRoom,livingRoom,restRoom,funiture,elevator,parkingSpace,price
+date,address,floor,type,age,twPing,bedRoom,livingRoom,restRoom,furniture,elevator,parkingSpace,price
 2020-04-28,台北市中山區林森北路308號11樓,11,住宅,13,13.72140049896,1,1,1,1,1,0,25000.0
 2020-04-30,台北市中山區南京東路三段48巷36號11樓,11,住宅,19,66.47740241736,3,2,2,1,1,1,124888.0
 2020-05-08,台北市中山區建國北路三段177號4樓,4,住宅,38,44.252726609190006,3,2,2,1,0,0,27000.0

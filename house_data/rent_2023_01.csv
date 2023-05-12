@@ -1,4 +1,4 @@
-date,address,floor,type,age,twPing,bedRoom,livingRoom,restRoom,funiture,elevator,parkingSpace,price
+date,address,floor,type,age,twPing,bedRoom,livingRoom,restRoom,furniture,elevator,parkingSpace,price
 2022-10-31,台北市中山區松江路２６巷３６號六樓,6,套房,43,10.5572503839,1,1,1,1,1,0,14500.0
 2022-11-08,台北市中山區新生北路三段１２號八樓之１,8,套房,11,17.84145064878,1,0,1,1,1,0,23000.0
 2022-11-09,台北市內湖區內湖路１段６５９號４樓之１,4,住宅,13,13.66997549709,1,0,1,1,1,0,19501.0

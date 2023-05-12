@@ -1,4 +1,4 @@
-date,address,floor,type,age,twPing,bedRoom,livingRoom,restRoom,funiture,elevator,parkingSpace,price
+date,address,floor,type,age,twPing,bedRoom,livingRoom,restRoom,furniture,elevator,parkingSpace,price
 2021-04-29,台北市中山區市民大道三段１４３號２樓,2,住宅,32,71.75905260942001,0,0,1,1,1,0,100000.0
 2021-04-25,台北市中山區朱崙街３４號３樓之８,3,住宅,27,14.21145051678,1,1,1,1,0,1,17500.0
 2021-04-29,台北市內湖區新豐街７１號６樓,6,住宅,4,55.883852032140005,3,2,2,1,1,1,60000.0

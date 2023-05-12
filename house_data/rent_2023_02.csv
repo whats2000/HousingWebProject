@@ -1,4 +1,4 @@
-date,address,floor,type,age,twPing,bedRoom,livingRoom,restRoom,funiture,elevator,parkingSpace,price
+date,address,floor,type,age,twPing,bedRoom,livingRoom,restRoom,furniture,elevator,parkingSpace,price
 2023-02-13,台北市大同區市民大道一段２０７號９樓之１７,9,住宅,14,13.99970050908,0,0,1,1,1,0,20000.0
 2023-03-18,台北市中正區林森北路９巷２０號２樓,2,住宅,41,35.888601305040005,3,1,2,1,0,0,43000.0
 2023-03-02,台北市大同區萬全街１號８樓之１,8,住宅,8,42.02330152812,3,2,2,1,1,0,91023.0

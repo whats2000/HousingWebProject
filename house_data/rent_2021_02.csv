@@ -1,4 +1,4 @@
-date,address,floor,type,age,twPing,bedRoom,livingRoom,restRoom,funiture,elevator,parkingSpace,price
+date,address,floor,type,age,twPing,bedRoom,livingRoom,restRoom,furniture,elevator,parkingSpace,price
 2021-01-26,台北市中山區復興北路400號八樓,8,住宅,37,27.72715100826,1,2,1,1,1,0,39000.0
 2021-02-17,台北市中山區中山北路2段65巷9號6樓之4,6,住宅,22,30.48897610869,2,1,1,1,1,0,30000.0
 2021-01-08,台北市中山區樂群二路116巷61弄16號5樓,5,住宅,15,77.60032782182999,3,2,2,1,1,1,160000.0

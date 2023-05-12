@@ -1,4 +1,4 @@
-date,address,floor,type,age,twPing,bedRoom,livingRoom,restRoom,funiture,elevator,parkingSpace,price
+date,address,floor,type,age,twPing,bedRoom,livingRoom,restRoom,furniture,elevator,parkingSpace,price
 2021-08-05,台北市中山區建國北路５５號８樓,8,住宅,16,14.21145051678,1,1,1,1,1,0,18000.0
 2021-07-23,台北市內湖區成功路四段１８０號１９樓之３,19,住宅,5,75.72785275374,3,2,2,1,1,0,120000.0
 2021-07-14,台北市中山區建國北路二段９之２號５樓之８,5,套房,17,26.816625975150004,1,1,1,1,1,0,35000.0

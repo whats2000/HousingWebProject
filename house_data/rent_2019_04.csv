@@ -1,4 +1,4 @@
-date,address,floor,type,age,twPing,bedRoom,livingRoom,restRoom,funiture,elevator,parkingSpace,price
+date,address,floor,type,age,twPing,bedRoom,livingRoom,restRoom,furniture,elevator,parkingSpace,price
 2019-08-08,台北市中山區新生北路三段82巷18號三樓之1,3,住宅,31,10.80227539281,1,0,1,1,1,0,10000.0
 2019-07-16,台北市內湖區成功路四段１８２巷６弄４３號十一樓之１,11,住宅,24,44.84260163064,3,2,2,1,1,1,33000.0
 2019-07-19,台北市文山區新光路一段３２巷４弄３號二樓之２,2,套房,19,15.49405056342,1,0,1,1,1,0,19000.0

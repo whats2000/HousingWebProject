@@ -1,4 +1,4 @@
-date,address,floor,type,age,twPing,bedRoom,livingRoom,restRoom,funiture,elevator,parkingSpace,price
+date,address,floor,type,age,twPing,bedRoom,livingRoom,restRoom,furniture,elevator,parkingSpace,price
 2020-08-11,台北市內湖區東湖路１０６巷４號２樓,2,住宅,42,27.43372599759,3,1,1,1,0,0,14000.0
 2020-08-12,台北市中山區中山北路二段７２巷９號４樓之５,4,套房,15,15.427500561,1,1,1,1,1,0,30000.0
 2020-08-27,台北市中山區民權東路二段２０６號四樓,4,住宅,37,23.280400846560003,3,2,1,1,1,0,28000.0

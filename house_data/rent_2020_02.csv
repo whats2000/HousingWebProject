@@ -1,4 +1,4 @@
-date,address,floor,type,age,twPing,bedRoom,livingRoom,restRoom,funiture,elevator,parkingSpace,price
+date,address,floor,type,age,twPing,bedRoom,livingRoom,restRoom,furniture,elevator,parkingSpace,price
 2020-01-17,台北市中山區新生北路二段40號6樓之6,6,住宅,27,20.01642572787,2,2,1,1,1,0,35000.0
 2020-02-01,台北市中山區中山北路二段183號8樓之1,8,住宅,4,27.53657600133,2,2,2,1,1,0,73000.0
 2020-01-19,台北市中山區民生東路3段9巷5號14樓之3,14,住宅,39,42.00515152746,4,2,3,1,1,0,59000.0

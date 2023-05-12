@@ -1,4 +1,4 @@
-date,address,floor,type,age,twPing,bedRoom,livingRoom,restRoom,funiture,elevator,parkingSpace,price
+date,address,floor,type,age,twPing,bedRoom,livingRoom,restRoom,furniture,elevator,parkingSpace,price
 2019-02-01,台北市中山區林森北路585號8樓之7,8,住宅,12,31.86535115874,2,2,2,1,1,0,72000.0
 2019-02-01,台北市中山區林森北路107巷65號6樓,6,住宅,11,29.65407607833,2,2,2,1,1,0,48000.0
 2019-02-05,台北市中山區撫順街15號5樓,5,住宅,12,33.867901231560005,2,2,2,1,1,0,60000.0

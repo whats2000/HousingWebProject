@@ -1,4 +1,4 @@
-date,address,floor,type,age,twPing,bedRoom,livingRoom,restRoom,funiture,elevator,parkingSpace,price
+date,address,floor,type,age,twPing,bedRoom,livingRoom,restRoom,furniture,elevator,parkingSpace,price
 2020-11-16,台北市中山區吉林路45號7樓,7,住宅,47,67.95965247126,0,0,0,0,1,0,90000.0
 2020-12-11,台北市中正區臨沂街25巷7號5樓,5,住宅,41,32.07710116644,3,2,2,1,0,0,34000.0
 2020-11-20,台北市松山區復興北路489號5樓之7,5,住宅,16,12.62030045892,0,0,0,1,1,0,15557.0

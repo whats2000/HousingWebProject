@@ -1,4 +1,4 @@
-date,address,floor,type,age,twPing,bedRoom,livingRoom,restRoom,funiture,elevator,parkingSpace,price
+date,address,floor,type,age,twPing,bedRoom,livingRoom,restRoom,furniture,elevator,parkingSpace,price
 2019-10-22,台北市中山區錦州街23巷1之1號三樓,3,住宅,8,16.640525605110003,2,2,1,1,1,0,31000.0
 2019-10-19,台北市中山區林森北路121號13樓之12,13,住宅,15,16.111150585860003,2,2,1,1,1,0,28000.0
 2019-11-06,台北市信義區和平東路三段169號12樓之8,12,住宅,15,13.63972549599,1,1,1,1,1,0,26000.0

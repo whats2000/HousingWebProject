@@ -1,118 +1,130 @@
 <h4 class="mb-3">房價試算</h4>
 <div class="row gy-3 ">
     <div class="d-flex align-items-center justify-content-center">
-        <div class="col-md-5">
-            <button class="w-50 btn btn-secondary btn-lg " id ="predictPrice"  type="button">估價</button>
+        <div class="col-md-6">
+            <button class="w-50 btn btn-secondary btn-lg " id="predictPrice" type="button">估價</button>
         </div>
-        <div class="col-md-5">
-            <p id="predict-result">
-            </p>
+        <div class="col-md-6">
+            <div id="predict-result">
+                <strong class='text-danger'>請填寫更詳細內容來估價</strong>
+            </div>
         </div>
     </div>
 </div>
 <hr class="my-4">
 <script>
     $(document).ready(function () {
-        $("#predictPrice").click(function (event) {
-            const address = $('#city').val() +$('#district').val() + $('#address').val();
-            
-            
-            var house =   [$('#floor').val(),$('#twPing').val(),
-                            $('#bedRoom').val(),$('#livingRoom').val(),$('#restRoom').val(),
-                            $('#balcony').val(),$('#age').val()];
-            house = house.map(str => parseInt(str));
-            
-            
-            if('{{postType}}' == "sell"){
-                var predict_data = house;
-                var arr = Array(21).fill(0);
-                var cities = ['南投縣', '嘉義市', '嘉義縣', '基隆市',
-                                '宜蘭縣', '屏東縣', '彰化縣', '新北市',
-                                '新竹市', '新竹縣', '桃園市', '澎湖縣',
-                                '台中市', '台北市', '台南市', '台東縣', 
-                                '花蓮縣', '苗栗縣', '金門縣', '雲林縣', 
-                                '高雄市'];
-                var index = cities.indexOf($('#city').val());
-                if (index !== -1 ) {
-                    arr[index] = 1;
-                } 
-                city_trans = arr; 
-                predict_data = predict_data.concat(city_trans);
+        $("#predictPrice").click(function () {
+            const resultBox = $("#predict-result");
+            resultBox.html('<div class="clearfix"><div class="spinner-border float-end" role="status"><span class="visually-hidden">Loading...</span></div></div>');
 
+            let index;
+            let cities;
+            let arr;
+            let predict_data;
 
-                var houseType = $('#houseType').val();
-                arr = Array(4).fill(0);
-                const houseTypes = ['公寓','華廈', '透天厝', '電梯大樓' ];
-                const houseTypeIndex = houseTypes.indexOf(houseType);
-                if (houseTypeIndex !== -1 ) {
-                    arr[houseTypeIndex] = 1;
-                } 
-                if (houseType ==  '別墅') {
-                    arr[2] = 1;
-                } 
-                houseType_trans = arr; 
-                predict_data = predict_data.concat(houseType_trans);
+            let city_trans;
+            let houseType_trans;
+            let type_trans;
+
+            const city = $('form input[name="city"]').val()
+            const district = $('form input[name="district"]').val()
+            const short_address = $('form input[name="address"]').val()
+
+            const houseType = $('#houseType').val();
+            const houseTypes = ['公寓', '華廈', '透天厝', '電梯大樓'];
+            const houseTypeIndex = houseTypes.indexOf(houseType);
+
+            if (!district || !district) {
+                resultBox.html("<strong class='text'>" +
+                    "<strong class='text-danger'>請填寫更詳細內容來估價</strong>");
+                return;
             }
-            else{
-                var predict_data = house.slice(0, house.length - 2);
-                
-                
-                var other = [$('#parkingSpace').prop('checked'),$('#elevator').prop('checked'),
-                            ($('#deskChair').prop('checked')) || ($('#sofa').prop('checked')) || ($('#bed').prop('checked'))];
-                var other = other.map((bool) => bool ? 1 : 0);
-                predict_data = predict_data.concat(other);
-                var arr = Array(18).fill(0);
-                var cities = ['南投縣', '嘉義市', '嘉義縣', '基隆市',
-                                '宜蘭縣', '屏東縣', '彰化縣', '新北市',
-                                '新竹市', '新竹縣', '桃園市', '台中市',
-                                '台北市', '台南市', '花蓮縣', '苗栗縣',
-                                '雲林縣', '高雄市'];
-                var index = cities.indexOf($('#city').val());
-                if (index !== -1 ) {
+
+            const address = city + district + short_address;
+
+            let house = [$('#floor').val(), $('#twPing').val(),
+                $('#bedRoom').val(), $('#livingRoom').val(), $('#restRoom').val(),
+                $('#balcony').val(), $('#age').val()];
+
+            house = house.map(str => parseInt(str));
+            if ('{{postType}}' === "sell") {
+                predict_data = house;
+                arr = Array(21).fill(0);
+                cities = ['南投縣', '嘉義市', '嘉義縣', '基隆市',
+                    '宜蘭縣', '屏東縣', '彰化縣', '新北市',
+                    '新竹市', '新竹縣', '桃園市', '澎湖縣',
+                    '台中市', '台北市', '台南市', '台東縣',
+                    '花蓮縣', '苗栗縣', '金門縣', '雲林縣',
+                    '高雄市'];
+                index = cities.indexOf($('#city').val());
+                if (index !== -1) {
                     arr[index] = 1;
-                } 
-                city_trans = arr; 
+                }
+                city_trans = arr;
+                predict_data = predict_data.concat(city_trans);
+                arr = Array(4).fill(0);
+                if (houseTypeIndex !== -1) {
+                    arr[houseTypeIndex] = 1;
+                }
+                if (houseType === '別墅') {
+                    arr[2] = 1;
+                }
+                houseType_trans = arr;
+                predict_data = predict_data.concat(houseType_trans);
+            } else {
+                predict_data = house.slice(0, house.length - 2);
+
+                let other = [$('#parkingSpace').prop('checked'), $('#elevator').prop('checked'),
+                    ($('#deskChair').prop('checked')) || ($('#sofa').prop('checked')) || ($('#bed').prop('checked'))];
+                other = other.map((bool) => bool ? 1 : 0);
+                predict_data = predict_data.concat(other);
+                arr = Array(18).fill(0);
+                cities = ['南投縣', '嘉義市', '嘉義縣', '基隆市',
+                    '宜蘭縣', '屏東縣', '彰化縣', '新北市',
+                    '新竹市', '新竹縣', '桃園市', '台中市',
+                    '台北市', '台南市', '花蓮縣', '苗栗縣',
+                    '雲林縣', '高雄市'];
+                index = cities.indexOf(city);
+                if (index !== -1) {
+                    arr[index] = 1;
+                }
+                city_trans = arr;
                 predict_data = predict_data.concat(city_trans);
 
-                var type = $('#type').val();
+                const type = $('#type').val();
                 arr = Array(2).fill(0);
-                const types = ['住宅','套房'];            
-                if (type ==  '住宅') {
+
+                if (type === '住宅') {
                     arr[0] = 1;
-                } 
-                else{
+                } else {
                     arr[1] = 1;
                 }
-                type_trans = arr; 
+                type_trans = arr;
                 predict_data = predict_data.concat(type_trans);
 
             }
 
-            const data = {predict_data: predict_data.join(', '),post_type:'{{postType}}',address: address};
-            
+            const data = {predict_data: predict_data.join(', '), post_type: '{{postType}}', address: address};
+
             $.ajax({
                 type: 'POST',
                 url: '/predict',
                 data: data,
-                success: function(response) {
+                success: function (response) {
                     const result = response.result;
-                    if("{{postType}}" == "sell"){
-                        $("#predict-result").html("預估售價 <strong class='text'>"+
-                        "<strong class='text-danger'>"+ result/10000 +"</strong> 萬元");
+                    if ("{{postType}}" === "sell") {
+                        resultBox.html("預估售價 <strong class='text'>" +
+                            "<strong class='text-danger'>" + result / 10000 + "</strong> 萬元");
+                    } else {
+                        resultBox.html("預估售價 <strong class='text'>" +
+                            "<strong class='text-danger'>" + result + "</strong>元");
                     }
-                    else{
-                        $("#predict-result").html("預估售價 <strong class='text'>"+
-                        "<strong class='text-danger'>"+ result +"</strong>元");
-                    }
-                    
-            
                 },
-                error: function(xhr, status, error) {
+                error: function (xhr, status, error) {
                     console.error(error);
                 }
             });
-
-                        
         });
     });
 </script>

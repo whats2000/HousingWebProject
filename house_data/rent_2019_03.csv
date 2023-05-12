@@ -1,4 +1,4 @@
-date,address,floor,type,age,twPing,bedRoom,livingRoom,restRoom,funiture,elevator,parkingSpace,price
+date,address,floor,type,age,twPing,bedRoom,livingRoom,restRoom,furniture,elevator,parkingSpace,price
 2019-05-03,台北市中山區新生北路二段51號十三樓,13,住宅,14,43.66890158796001,4,2,2,1,1,0,55000.0
 2019-04-30,台北市中山區新生北路二段28巷1號八樓,8,住宅,34,23.53752585591,2,1,1,1,1,0,35000.0
 2019-05-02,台北市中山區新生北路三段56巷19號七樓之1,7,住宅,14,23.00512583655,2,1,1,1,1,0,65000.0

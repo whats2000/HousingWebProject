@@ -1,4 +1,4 @@
-date,address,floor,type,age,twPing,bedRoom,livingRoom,restRoom,funiture,elevator,parkingSpace,price
+date,address,floor,type,age,twPing,bedRoom,livingRoom,restRoom,furniture,elevator,parkingSpace,price
 2018-10-28,台北市中山區中山北路二段５９巷１１號八樓之３,8,住宅,38,23.10495084018,2,2,1,0,1,0,23000.0
 2018-10-23,台北市中山區農安街４５號四樓之１,4,住宅,47,11.02612540095,1,0,1,1,1,0,16000.0
 2018-10-21,台北市內湖區民權東路六段１９０巷２１弄３７號四樓,4,套房,8,11.39820041448,1,0,1,1,1,1,24000.0

@@ -1,4 +1,4 @@
-date,address,floor,type,age,twPing,bedRoom,livingRoom,restRoom,funiture,elevator,parkingSpace,price
+date,address,floor,type,age,twPing,bedRoom,livingRoom,restRoom,furniture,elevator,parkingSpace,price
 2022-04-29,台北市中山區龍江路１號九樓之１,9,套房,18,16.35315059466,1,1,1,1,1,0,25000.0
 2022-04-30,台北市內湖區文德路２１０巷８號１０樓之４,10,住宅,27,12.735250463100002,1,2,1,0,1,0,25000.0
 2022-04-25,台北市內湖區文湖街４２號４樓之２,4,住宅,7,128.24790466356,3,2,3,1,1,1,135000.0

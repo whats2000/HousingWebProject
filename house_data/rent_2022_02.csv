@@ -1,4 +1,4 @@
-date,address,floor,type,age,twPing,bedRoom,livingRoom,restRoom,funiture,elevator,parkingSpace,price
+date,address,floor,type,age,twPing,bedRoom,livingRoom,restRoom,furniture,elevator,parkingSpace,price
 2022-02-10,台北市中山區新生北路二段４０號６樓,6,套房,27,10.6177503861,1,0,1,1,1,0,23000.0
 2021-12-26,台北市萬華區康定路１０５號２５樓之１,25,住宅,7,15.64530056892,0,0,0,1,1,0,24000.0
 2022-02-10,台北市松山區寶清街２１號１０樓之１,10,住宅,33,22.14602580531,2,1,2,1,1,0,29000.0
