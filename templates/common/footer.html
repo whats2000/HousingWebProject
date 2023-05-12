@@ -43,21 +43,22 @@
             </div>
 
             <div class="col-lg-5 offset-lg-1 mb-3 p-0">
-                <form class="search-input">
+                <form action="/search/advance" method="POST" class="search-input">
                     <h5 class="border-bottom">找尋理想房屋</h5>
                     <p>幸福在不遠處</p>
                     <div class="input-group">
                         <span class="input-group-text p-0">
                             <label for="searchType" class="visually-hidden">搜尋類型</label>
-                            <select id="searchType" class="border-0 search-type form-select shadow-none">
+                            <select name="searchType" id="searchType" class="border-0 search-type form-select shadow-none">
                                 <option value="buy">買屋</option>
                                 <option value="rent">租屋</option>
                             </select>
                         </span>
                         <label for="search-input" class="visually-hidden">物件名稱</label>
-                        <input id="search-input" type="text" class="form-control input-query rounded-0 shadow-none"
+                        <input id="search-input" name="query" type="text" class="form-control input-query rounded-0 shadow-none"
                                placeholder="社區名稱/地點街區">
-                        <button class="search-button btn btn-primary rounded-start-0 shadow-none" type="button">
+                        <button class="search-button btn btn-primary rounded-start-0 shadow-none" type="submit"
+                                data-bs-toggle="modal" data-bs-target="#modal-search">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                  class="bi bi-search" viewBox="0 0 16 16">
                                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>

@@ -39,6 +39,13 @@ class User(UserMixin):
         return self.id
 
 
+def handle_datetime(obj):
+    if isinstance(obj, dt.datetime):
+        return obj.strftime('%Y-%m-%d %H:%M:%S')
+    else:
+        raise TypeError(f'Object of type {obj.__class__.__name__} is not JSON serializable')
+
+
 # 使用正則表達式找出字串中的所有時間
 def time_diff_string(input_datetime):
     if input_datetime is None:
@@ -664,18 +671,39 @@ def pricing():
     return render_template('pricing.html')
 
 
-@app.route('/search', methods=['GET'])
+@app.route('/search', methods=['GET', 'POST'])
 def search():
-    search_type = request.args.get('searchType')  # 獲取搜索類型
-    query = request.args.get('query')  # 獲取搜索關鍵詞
-    selected_region = session.get('selected_region', '台北市')
+    post_type = request.args.get('postType')
+    post_results_str = request.args.get('post_results')
+    if post_results_str:
+        post_results = json.loads(post_results_str)
+    else:
+        post_results = []
 
-    sql_query = generate_sql_query(search_type, query, selected_region)
-    print(sql_query)
+    selected_region = session.get('selected_region', '台北市')
 
     return render_template(
         'search_results.html',
+        postType=post_type,
+        post_results=post_results,
         selected_region=selected_region
+    )
+
+
+@app.route('/search/advance', methods=['POST'])
+def advance_search():
+    search_type = request.form.get('searchType')
+    query = request.form.get('query')
+    selected_region = session.get('selected_region', '台北市')
+
+    results = generate_sql_query(search_type, query, selected_region)
+
+    return redirect(
+        url_for(
+            'search',
+            postType=search_type,
+            post_results=json.dumps(results, default=handle_datetime)
+        )
     )
 
 

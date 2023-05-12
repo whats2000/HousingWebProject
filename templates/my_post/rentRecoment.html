@@ -1,59 +1,70 @@
 <section class="container py-5">
-    {% for post in post_rent_results %}
-        <a href="../rentals_info.html?pId={{ post['pId'] }}" style="text-decoration: none;">
-            <div class="align-items-stretch">
-                <div class="card h-100 py-1 border-0 border-bottom">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <img src="{{ post['image'] }}" class="img-fluid h-100" alt="圖片無法顯示">
-                            </div>
-                            <div class="col-md-6 d-flex flex-column">
-                                <h5 class="card-title fw-bold mt-2">{{ post['title'] }}</h5>
-                                <div class="my-auto mt-2"><p class="card-text">
-                                    <div class="mb-3 d-flex align-items-center">
-                                        <i class="bi bi-house-door me-2 mb-1"></i>
-                                        <span>{{ post['type'] }} |
-                                            {% if post['bedRoom'] > 0 %}
-                                                {{ post['bedRoom'] }}房
-                                            {% endif %}
+    {% if post_rent_results %}
+        {% for post in post_rent_results %}
+            <a href="../rentals_info.html?pId={{ post['pId'] }}" style="text-decoration: none;">
+                <div class="align-items-stretch">
+                    <div class="card h-100 py-1 border-0 border-bottom">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img src="{{ post['image'] }}" class="img-fluid h-100" alt="圖片無法顯示">
+                                </div>
+                                <div class="col-md-6 d-flex flex-column">
+                                    <h5 class="card-title fw-bold mt-2">{{ post['title'] }}</h5>
+                                    <div class="my-auto mt-2"><p class="card-text">
+                                        <div class="mb-3 d-flex align-items-center">
+                                            <i class="bi bi-house-door me-2 mb-1"></i>
+                                            <span>{{ post['type'] }} |
+                                                {% if post['bedRoom'] > 0 %}
+                                                    {{ post['bedRoom'] }}房
+                                                {% endif %}
 
-                                            {% if post['livingRoom'] > 0 %}
-                                                {{ post['livingRoom'] }}廳
-                                            {% endif %}
+                                                {% if post['livingRoom'] > 0 %}
+                                                    {{ post['livingRoom'] }}廳
+                                                {% endif %}
 
-                                            {% if post['restRoom'] > 0 %}
-                                                {{ post['restRoom'] }}衛
-                                            {% endif %}
-                                            | {{ post['twPing'] }} 坪 | {{ post['floor'] }}
-                                            {% if post['floor'].isdigit() %}F{% endif %}
+                                                {% if post['restRoom'] > 0 %}
+                                                    {{ post['restRoom'] }}衛
+                                                {% endif %}
+                                                | {{ post['twPing'] }} 坪 | {{ post['floor'] }}
+                                                {% if post['floor'].isdigit() %}F{% endif %}
                                         </span>
-                                    </div>
-                                    <div class="mb-3 d-flex align-items-center">
-                                        <i class="bi bi-geo-alt me-2 mb-1"></i>
-                                        <span>{{ post['district'] }} - {{ post['address'] }}</span>
-                                    </div>
-                                    <div class="mb-3 d-flex align-items-center">
-                                        <i class="bi bi-person-circle me-2 mb-1"></i>
-                                        <span>{{ post['name'] }} - {{ post['phone'] }} {{post['reviseDateTime']}}更新 / {{post['click']}}人瀏覽 </span>
+                                        </div>
+                                        <div class="mb-3 d-flex align-items-center">
+                                            <i class="bi bi-geo-alt me-2 mb-1"></i>
+                                            <span>{{ post['district'] }} - {{ post['address'] }}</span>
+                                        </div>
+                                        <div class="mb-3 d-flex align-items-center">
+                                            <i class="bi bi-person-circle me-2 mb-1"></i>
+                                            <span>{{ post['name'] }} - {{ post['phone'] }} {{ post['reviseDateTime'] }}更新 / {{ post['click'] }}人瀏覽 </span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-2 p-2 d-flex flex-column">
-                                <div class="my-auto">
-                                    <h5 class="text-danger">{{ post['price'] }}元/月</h5>
-                                    <p class="card-text">
-                                        {{ "有電梯" if post['elevater'] else "無電梯" }} /
-                                        {{ "有網路" if post['internet'] else "無網路" }}
-                                    </p>
+                                <div class="col-md-2 p-2 d-flex flex-column">
+                                    <div class="my-auto">
+                                        <h5 class="text-danger">{{ post['price'] }}元/月</h5>
+                                        <p class="card-text">
+                                            {{ "有電梯" if post['elevater'] else "無電梯" }} /
+                                            {{ "有網路" if post['internet'] else "無網路" }}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </a>
+        {% endfor %}
+    {% else %}
+        <div class="container bg-secondary">
+            <div class="p-5 text-center bg-body-tertiary rounded-3">
+                <h1 class="text-body-emphasis">這裡空空如也</h1>
+                <p class="lead">
+                    目前沒有任何賣屋資料，你可以發布第一個房子
+                </p>
             </div>
-        </a>
-    {% endfor %}
+        </div>
+    {% endif %}
     {% if current_user.is_authenticated %}
         <div style="text-align: center;">
             <h5 class="card-title mt-3">新增租屋貼文</h5>
@@ -63,6 +74,7 @@
                      class="bi bi-plus-square-fill" viewBox="0 0 16 16">
                     <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"></path>
                 </svg>
-            </a></div>
+            </a>
+        </div>
     {% endif %}
 </section>

@@ -29,6 +29,11 @@
 {% include 'common/notifaction.html' %}
 <main>
     {% include './index/topic.html' %}
+    {% if postType == 'buy' %}
+        {% include './sell/recoment.html' %}
+    {% else %}
+        {% include './rentals/recoment.html' %}
+    {% endif %}
 </main>
 </body>
 

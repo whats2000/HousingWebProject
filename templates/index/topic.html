@@ -3,13 +3,15 @@
          class="d-block w-100 h-100 img-fluid" alt="圖片無法載入">
     <div class="d-block d-xs-none">
         <div class="topic-content bg-dark bg-opacity-50 p-5">
-            <form action="/search" method="get" class="topic-search-input">
+            <form action="/search/advance" method="POST" class="topic-search-input">
                 <h5 class="border-bottom fw-bold text-light fs-3">找尋理想房屋</h5>
                 <div class="mb-2">
-                    <input type="radio" class="btn-check search-type" name="searchType" id="option1" autocomplete="off" value="buy" checked>
+                    <input type="radio" class="btn-check search-type" name="searchType" id="option1" autocomplete="off"
+                           value="buy" checked>
                     <label class="btn btn-outline-warning" for="option1">買屋</label>
 
-                    <input type="radio" class="btn-check search-type" name="searchType" id="option2" autocomplete="off" value="rent">
+                    <input type="radio" class="btn-check search-type" name="searchType" id="option2" autocomplete="off"
+                           value="rent">
                     <label class="btn btn-outline-warning" for="option2">租屋</label>
                 </div>
                 <div class="input-group">
@@ -50,7 +52,8 @@
                     <input id="search-input-topic" type="text" name="query"
                            class="form-control form-control-lg input-query rounded-0 shadow-none"
                            placeholder="社區名稱/地點街區">
-                    <button class="search-button btn btn-warning rounded-0 shadow-none" type="submit">
+                    <button class="search-button btn btn-warning rounded-0 shadow-none" type="submit"
+                            data-bs-toggle="modal" data-bs-target="#modal-search">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                              class="bi bi-search" viewBox="0 0 16 16">
                             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
@@ -63,7 +66,18 @@
         </div>
     </div>
 </section>
-
+<div class="modal fade" id="modal-search" data-bs-backdrop="static" aria-hidden="true" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="d-flex align-items-center fs-4 p-3">
+                    <strong>搜索中, 請稍後...</strong>
+                    <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
     let topicSuggestions = []
     // getting all required elements
@@ -82,7 +96,7 @@
             let emptyArray = topicSuggestions;
             if (userData) {
                 emptyArray = emptyArray.map((data) => {
-                    let url = $('input[name=searchType]:checked').val() === "buy" ? "sell_info.html?pId=" : "rentals_info.html?pId=";
+                    let url = topicSearchInput.find(".search-type:checked").val() === "buy" ? "sell_info.html?pId=" : "rentals_info.html?pId=";
                     // passing return data inside li tag with a link
                     return `<li><a class="text-reset text-decoration-none" href="${url}${data['pId']}">${data['district']} | ${data['address']} <br> ${data['title']}</a></li>`;
                 });
@@ -94,7 +108,7 @@
                 let allList = topicResultBox.find("li");
                 for (let i = 0; i < allList.length; i++) {
                     // 單純點擊輔助完成
-                    allList.eq(i).attr("onclick", "select(this)");
+                    allList.eq(i).attr("onclick", "topic_select(this)");
                 }
             } else {
                 topicResultBox.removeClass("active"); // hide autocomplete box
@@ -130,7 +144,7 @@
             });
         });
 
-        topicSearchType.on('change', function() {
+        topicSearchType.on('change', function () {
             topicSearchType = $(this); // 更新 topicSearchType 的值
             const searchQuery = topicInput.val();  // 獲取輸入框的值
             const searchQueryType = topicSearchType.val();
@@ -148,7 +162,7 @@
         });
     });
 
-    function select(element) {
+    function topic_select(element) {
         let selectData = $(element).find("a").text();
 
         if (!selectData.split(' ')[2]) return;
