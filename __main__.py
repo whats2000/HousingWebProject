@@ -1,7 +1,8 @@
 import datetime as dt
 import json
 import os
-
+import pickle
+import requests
 import pandas as pd
 from PIL import Image
 from flask import Flask, render_template, session, redirect, url_for, flash, jsonify, request
@@ -92,6 +93,61 @@ def get_dataframe(location, attr, year):
 
     return df
 
+
+def get_coordination(address):
+    # 要轉換的地址
+
+    # Google Maps API的網址
+    url = 'https://maps.googleapis.com/maps/api/geocode/json'
+
+    # 請求參數
+    params = {'address': address, 'key': GOOGLE_API_KEY}
+
+    # 發送請求
+    response = requests.get(url, params=params)
+
+    # 解析JSON數據
+    result = response.json()
+
+    # 獲取經緯度
+    location = result['results'][0]['geometry']['location']
+    latitude = location['lat']
+    longitude = location['lng']
+
+    return (latitude, longitude)
+
+
+def predict_sell_price(data):
+    columns = ['year', 'month', 'total_seconds', 'latitude', 'longitude',
+                'floor','twPing','bedRoom', 'livingRoom', 'restRoom',
+                'balcony', 'age', 'city_南投縣', 'city_嘉義市', 'city_嘉義縣',
+                'city_基隆市', 'city_宜蘭縣', 'city_屏東縣', 'city_彰化縣', 'city_新北市', 
+                'city_新竹市', 'city_新竹縣', 'city_桃園市', 'city_澎湖縣', 'city_臺中市', 
+                'city_臺北市', 'city_臺南市', 'city_臺東縣', 'city_花蓮縣', 'city_苗栗縣',
+                'city_金門縣', 'city_雲林縣', 'city_高雄市', 'houseType_公寓', 'houseType_華廈',
+                'houseType_透天', 'houseType_電梯大樓']
+    df = pd.DataFrame(data,columns = columns)
+
+    with open('./pricePredictor/sell.pkl', 'rb') as f:
+        model = pickle.load(f)
+    predictions = model.predict(df)
+    return predictions
+
+def predict_rent_price(data):
+    columns = ['year', 'month', 'total_seconds', 'latitude', 'longitude', 
+               'floor', 'twPing', 'bedRoom', 'livingRoom', 'restRoom', 
+               'parkingSpace', 'elevator', 'funiture', 'city_南投縣', 
+               'city_嘉義市', 'city_嘉義縣', 'city_基隆市', 'city_宜蘭縣', 
+               'city_屏東縣', 'city_彰化縣', 'city_新北市', 'city_新竹市', 
+               'city_新竹縣', 'city_桃園市', 'city_臺中市', 'city_臺北市', 
+               'city_臺南市', 'city_花蓮縣', 'city_苗栗縣', 'city_雲林縣', 
+               'city_高雄市', 'type_住宅', 'type_套房']
+    df = pd.DataFrame(data,columns=columns)
+    
+    with open('./pricePredictor/rent.pkl', 'rb') as f:
+        model = pickle.load(f)
+    predictions = model.predict(df)
+    return predictions
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -543,6 +599,26 @@ def add_post():
     return render_template(
         'add_post.html',
         postType=post_type)
+
+@app.route('/predict', methods=['POST'])
+@login_required
+def predict_price():
+    postType = request.form.get('post_type')
+    address = request.form.get("address")
+    
+    coordination = get_coordination(address)
+    data = request.form.get("predict_data")
+    year = dt.datetime.now().year
+    month = dt.datetime.now().month
+    interval = dt.datetime.now() - dt.datetime(2020,1,1)
+    total_seconds = interval.total_seconds()
+
+    data = [[year,month,total_seconds]+list(coordination) +list(map(float, data.split(",")))]
+    
+    processed_data = predict_rent_price(data) if postType == "rent" else predict_sell_price(data)
+    response = {'result': int(processed_data[0])}
+    
+    return jsonify(response)
 
 
 @app.route('/upload_post', methods=['POST', 'GET'])
