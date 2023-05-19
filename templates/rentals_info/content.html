@@ -48,8 +48,9 @@
                         <div class="col-md-8 col-6">{{ post['name'] }}</div>
                     </div>
 
-                    <div class="d-grid">
-                        <button class="btn btn-warning fw-bold" type="button">{{ post['phone'] }}</button>
+                    <div class="d-grid phone-container">
+                        <button id="phone" class="btn btn-warning fw-bold" type="button">{{ post['phone'] }}</button>
+                        <div id="qrcode-container" class="w-100 mx-auto d-flex justify-content-center align-items-center"></div>
                     </div>
                 </div>
             </div>
@@ -124,4 +125,28 @@
             }
         });
     }
+
+    $(document).ready(function () {
+        const qrcodeContainer = $('#qrcode-container');
+
+        $('#phone').hover(function () {
+            const phoneNumber = $(this).text();
+
+            // 清空 QR Code 容器
+            qrcodeContainer.empty();
+
+            // 生成 QR Code
+            qrcodeContainer.qrcode({
+                text: 'tel:' + phoneNumber,
+                width: 128,
+                height: 128
+            });
+
+            // 顯示 QR Code 容器
+            qrcodeContainer.removeClass('d-none');
+        }, function () {
+            // 隱藏 QR Code 容器
+            qrcodeContainer.addClass('d-none');
+        });
+    });
 </script>
