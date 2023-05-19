@@ -4,22 +4,37 @@
             <div class="col-6 col-lg-2 mb-3 p-0">
                 <h5 class="border-bottom">買屋</h5>
                 <ul class="nav flex-column">
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">新建案</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">中古屋</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">店面</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">辦公</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">廠房</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary"
+                                                 onclick="selectType('公寓', 'sell')">公寓</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary"
+                                                 onclick="selectType('電梯大樓', 'sell')">電梯大樓</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary"
+                                                 onclick="selectType('透天厝', 'sell')">透天厝</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary"
+                                                 onclick="selectType('別墅', 'sell')">別墅</a></li>
                 </ul>
             </div>
+
 
             <div class="col-6 col-lg-2 mb-3 p-0">
                 <h5 class="border-bottom">租屋</h5>
                 <ul class="nav flex-column">
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">新建案</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">中古屋</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">店面</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">辦公</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">廠房</a></li>
+                    <li class="nav-item mb-2">
+                        <a href="#" class="nav-link p-0 text-body-secondary"
+                           onclick="selectType('住宅', 'rentals')">整層住家</a>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a href="#" class="nav-link p-0 text-body-secondary"
+                           onclick="selectType('獨立套房', 'rentals')">獨立套房</a>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a href="#" class="nav-link p-0 text-body-secondary"
+                           onclick="selectType('分租套房', 'rentals')">分租套房</a>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a href="#" class="nav-link p-0 text-body-secondary"
+                           onclick="selectType('雅房', 'rentals')">雅房</a>
+                    </li>
                 </ul>
             </div>
 
@@ -38,7 +53,7 @@
                     </li>
                     <li class="nav-item mb-2"><a href="/pricing" class="nav-link p-0 text-body-secondary">刊登費用</a>
                     </li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">客服聯繫</a></li>
+                    <li class="nav-item mb-2"><a href="https://youtu.be/dQw4w9WgXcQ" class="nav-link p-0 text-body-secondary">客服聯繫</a></li>
                 </ul>
             </div>
 
@@ -49,13 +64,15 @@
                     <div class="input-group">
                         <span class="input-group-text p-0">
                             <label for="searchType" class="visually-hidden">搜尋類型</label>
-                            <select name="searchType" id="searchType" class="border-0 search-type form-select shadow-none">
+                            <select name="searchType" id="searchType"
+                                    class="border-0 search-type form-select shadow-none">
                                 <option value="buy">買屋</option>
                                 <option value="rent">租屋</option>
                             </select>
                         </span>
                         <label for="search-input" class="visually-hidden">物件名稱</label>
-                        <input id="search-input" name="query" type="text" class="form-control input-query rounded-0 shadow-none"
+                        <input id="search-input" name="query" type="text"
+                               class="form-control input-query rounded-0 shadow-none"
                                placeholder="社區名稱/地點街區">
                         <button class="search-button btn btn-primary rounded-start-0 shadow-none" type="submit"
                                 data-bs-toggle="modal" data-bs-target="#modal-search">
@@ -166,6 +183,23 @@
         let selectedAddress = selectData.split(' ')[2].trim(); // 獲取選擇的地址
         input.val(selectedAddress);
         searchInput.removeClass("active");
+    }
+
+    function selectType(type, page) {
+        const obj = page === 'sell' ? {houseType: type} : {type: type};
+        const url = page === 'sell' ? '/update/houseType' : '/update/type';
+        $.ajax({
+            type: 'POST',
+            url: url,
+            contentType: 'application/json;charset=UTF-8',
+            data: JSON.stringify(obj),
+            success: function () {
+                window.location.href = `/${page}.html`;
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
     }
 </script>
 

@@ -208,27 +208,25 @@
 </div>
 
 <script>
-    function filter(filter_name, defaults) {
+    function filter(filter_name, defaults, selectedFilter) {
         const filterOptions = document.querySelectorAll('input[name="' + filter_name + '"]');
         filterOptions.forEach((option) => {
-            option.checked = localStorage.getItem(option.id) === "true";
+            option.checked = option.value === selectedFilter;
             option.addEventListener("change", (event) => {
                 let selectedFilter;
                 if (event.target.checked) {
                     filterOptions.forEach((option) => {
                         if (option !== event.target && option.checked) {
                             option.checked = false;
-                            localStorage.setItem(option.id, 'false');
                         }
                     });
-                    localStorage.setItem(event.target.id, 'true');
                     selectedFilter = event.target.value;
                 } else {
-                    localStorage.setItem(event.target.id, 'false');
                     selectedFilter = defaults;
                 }
                 const obj = {};
-                obj[filter_name] = selectedFilter
+                obj[filter_name] = selectedFilter;
+                localStorage.setItem(filter_name, selectedFilter);
                 $.ajax({
                     type: 'POST',
                     url: '/update/' + filter_name,
@@ -245,12 +243,23 @@
         });
     }
 
-    filter("pattern", ">=0")
-    filter("houseType", "All")
-    filter("price", ">=0")
-    filter("twPing", ">=0")
-    filter("age", ">=0")
-    filter("myPost", "All")
+    function initializeFilters(filterName, defaults) {
+        const selectedFilter = localStorage.getItem(filterName) || "{{ session.get('" + filterName + "', '" + defaults + "') }}";
+        filter(filterName, defaults, selectedFilter);
+    }
+
+    function initializeSellType() {
+        const selectedHouseType = "{{ session.get('selected_houseType', 'All') }}";
+        filter("houseType", "All", selectedHouseType);
+    }
+
+    initializeFilters("pattern", ">=0");
+    initializeFilters("price", ">=0");
+    initializeFilters("twPing", ">=0");
+    initializeFilters("age", ">=0");
+    initializeFilters("myPost", "All");
+
+    initializeSellType();
 
     function order(order_name, name, defaults) {
         const orderOption = document.querySelector('input[name="' + order_name + '"]');

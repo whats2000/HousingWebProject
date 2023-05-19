@@ -171,11 +171,12 @@
         </div>
     </div>
 </div>
+
 <script>
-    function filter(filter_name, defaults) {
+    function filter(filter_name, defaults, selectedFilter) {
         const filterOptions = document.querySelectorAll('input[name="' + filter_name + '"]');
         filterOptions.forEach((option) => {
-            option.checked = localStorage.getItem(option.id) === "true";
+            option.checked = option.value === selectedFilter;
             option.addEventListener("change", (event) => {
                 let selectedFilter;
                 if (event.target.checked) {
@@ -192,7 +193,8 @@
                     selectedFilter = defaults;
                 }
                 const obj = {};
-                obj[filter_name] = selectedFilter
+                obj[filter_name] = selectedFilter;
+                localStorage.setItem(filter_name, selectedFilter);
                 $.ajax({
                     type: 'POST',
                     url: '/update/' + filter_name,
@@ -209,11 +211,22 @@
         });
     }
 
-    filter("type", "All")
-    filter("pattern", ">=0")
-    filter("price", ">=0")
-    filter("twPing", ">=0")
-    filter("myPost", "All")
+    function initializeFilters(filterName, defaults) {
+        const selectedFilter = localStorage.getItem(filterName) || "{{ session.get('" + filterName + "', '" + defaults + "') }}";
+        filter(filterName, defaults, selectedFilter);
+    }
+
+    function initializeRentalType() {
+        const selectedType = "{{ session.get('selected_type', 'All') }}";
+        filter("type", "All", selectedType);
+    }
+
+    initializeFilters("pattern", ">=0");
+    initializeFilters("price", ">=0");
+    initializeFilters("twPing", ">=0");
+    initializeFilters("myPost", "All");
+
+    initializeRentalType();
 
     function order(order_name, name, defaults) {
         const orderOption = document.querySelector('input[name="' + order_name + '"]');
@@ -228,7 +241,6 @@
                 localStorage.setItem(event.target.id, 'false');
                 obj[order_name] = defaults;
             }
-            console.log(obj['priceOrder'])
             $.ajax({
                 type: 'POST',
                 url: '/update/' + order_name,
