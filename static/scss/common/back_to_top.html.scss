@@ -1,0 +1,37 @@
+#btn-back-to-top {
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+}
+
+.animate__animated {
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+}
+
+.animate__zoomIn {
+  animation-name: zoomIn;
+}
+
+.animate__zoomOut {
+  animation-name: zoomOut;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes zoomOut {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0);
+  }
+}
+

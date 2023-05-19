@@ -1,0 +1,39 @@
+<button type="button" class="btn btn-warning btn-floating btn-lg rounded-5 position-fixed d-none" id="btn-back-to-top">
+    <i class="bi bi-arrow-up"></i>
+</button>
+
+
+<script>
+    $(document).ready(function () {
+        let backToTopBtn = $("#btn-back-to-top");
+        let isVisible = false;
+
+        $(window).scroll(function () {
+            scrollFunction();
+        });
+
+        function scrollFunction() {
+            let scrollTop = $(document).scrollTop();
+
+            if (scrollTop > 20 && !isVisible) {
+                backToTopBtn.removeClass('d-none');
+                backToTopBtn.removeClass('animate__zoomOut');
+                backToTopBtn.addClass('animate__animated animate__zoomIn');
+                isVisible = true;
+            } else if (scrollTop <= 20 && isVisible) {
+                backToTopBtn.removeClass('animate__zoomIn');
+                backToTopBtn.addClass('animate__animated animate__zoomOut');
+                setTimeout(function () {
+                    backToTopBtn.addClass('d-none');
+                }, 300);
+                isVisible = false;
+            }
+        }
+
+        backToTopBtn.on("click", backToTop);
+
+        function backToTop() {
+            $("html, body").animate({ scrollTop: 0 }, "slow");
+        }
+    });
+</script>
