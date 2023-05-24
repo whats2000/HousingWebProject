@@ -5,7 +5,7 @@
             <button class="btn btn-secondary btn-lg " id="predictPrice" type="button">估價</button>
         </div>
         <div class="col">
-            <div id="predict-result text-center">
+            <div id="predict-result">
                 <strong class="text-danger">請填寫更詳細內容來估價</strong>
             </div>
         </div>
@@ -113,6 +113,7 @@
                 data: data,
                 success: function (response) {
                     const result = response.result;
+
                     if ("{{postType}}" === "sell") {
                         resultBox.html("預估售價 <strong class='text'>" +
                             "<strong class='text-danger'>" + result / 10000 + "</strong> 萬元");

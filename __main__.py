@@ -618,8 +618,6 @@ def predict_price():
 
     data = [[year, month, total_seconds] + list(coordination) + list(map(float, data.split(",")))]
 
-    print(data)
-
     processed_data = predict_rent_price(data) if post_type == "rent" else predict_sell_price(data)
     response = {'result': int(processed_data[0])}
 
