@@ -46,6 +46,13 @@
                 以管理員權限
             {% endif %}編輯貼文
         </button>
+        <button data-bs-toggle="modal" data-bs-target="#modal-delete-post"
+                class="mt-2 w-100 btn btn-danger btn-lg">
+            {% if revise_permission != 1 and
+                  current_user.permission == 'manager' %}
+                以管理員權限
+            {% endif %}刪除貼文
+        </button>
     </div>
     <div id="revise-content">
         {% include './revise_post/revise_post_form.html' %}
