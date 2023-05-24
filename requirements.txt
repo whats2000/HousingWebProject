@@ -1,0 +1,8 @@
+setuptools~=65.5.0
+openai~=0.27.6
+PyMySQL~=1.0.3
+pandas~=2.0.0
+requests~=2.29.0
+Pillow~=9.5.0
+Flask~=2.2.3
+Werkzeug~=2.2.3
