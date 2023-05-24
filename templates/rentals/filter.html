@@ -236,7 +236,7 @@
             if (event.target.checked) {
                 localStorage.setItem(event.target.id, 'true');
 
-                obj[order_name] = " ORDER BY " + name.toUpperCase() + " DESC";
+                obj[order_name] = " ORDER BY " + name.toUpperCase() + " ASC";
             } else {
                 localStorage.setItem(event.target.id, 'false');
                 obj[order_name] = defaults;
@@ -256,8 +256,8 @@
         });
     }
 
-    order("priceOrder", "price", " ORDER BY PRICE ASC");
-    order("twPingOrder", "twPing", " ORDER BY PRICE ASC");
+    order("priceOrder", "price", " ORDER BY PRICE DESC");
+    order("twPingOrder", "twPing", " ORDER BY PRICE DESC");
 
 </script>
     
