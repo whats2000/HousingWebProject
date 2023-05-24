@@ -18,9 +18,11 @@
                         <span class="input-group-text">
                             <i class="bi bi-envelope"></i>
                         </span>
-                        <div class="invalid-feedback d-flex align-items-center">
-                            <i class="bi bi-x-circle red-text me-2 mb-1"></i>
-                            用戶或密碼錯誤
+                        <div class="invalid-feedback">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-x-circle red-text me-2 mb-1"></i>
+                                用戶或密碼錯誤
+                            </div>
                         </div>
                     </div>
                     <label for="login-password" class="mb-3">密碼</label>
@@ -53,8 +55,11 @@
 </div>
 
 <script>
+    const email = $("#login-email");
+    email.removeClass("is-invalid");
+
     $(document).ready(function () {
-        $("#login-form").submit(function (event) {
+        email.submit(function (event) {
             event.preventDefault(); // 防止表單自動提交
 
             const formData = $(this).serialize(); // 取得表單資料
@@ -64,12 +69,14 @@
                 url: "/login",
                 data: formData,
                 success: function (response) {
+                    const email = $("#login-email");
                     if (response === 'success') {
+                        email.removeClass("is-invalid");
                         location.reload();
                         return;
                     }
 
-                    $("#login-email").addClass("is-invalid");
+                    email.addClass("is-invalid");
                 },
                 error: function () {
                     // 登入失敗時顯示錯誤訊息
