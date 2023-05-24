@@ -1,8 +1,8 @@
-<footer class="bg-body-secondary">
-    <div class="py-5 container">
+<footer class="bg-secondary-subtle">
+    <div class="pt-5 container">
         <div class="row px-3">
             <div class="col-6 col-lg-2 mb-3 p-0">
-                <h5 class="border-bottom">買屋</h5>
+                <h5 class="fw-bold">買屋</h5>
                 <ul class="nav flex-column">
                     <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary"
                                                  onclick="selectType('公寓', 'sell')">公寓</a></li>
@@ -17,7 +17,7 @@
 
 
             <div class="col-6 col-lg-2 mb-3 p-0">
-                <h5 class="border-bottom">租屋</h5>
+                <h5 class="fw-bold">租屋</h5>
                 <ul class="nav flex-column">
                     <li class="nav-item mb-2">
                         <a href="#" class="nav-link p-0 text-body-secondary"
@@ -39,7 +39,7 @@
             </div>
 
             <div class="col-6 col-lg-2 mb-3 p-0">
-                <h5 class="border-bottom">常見問題</h5>
+                <h5 class="fw-bold">常見問題</h5>
                 <ul class="nav flex-column">
                     <li class="nav-item mb-2">
                         <a href="#" class="nav-link p-0 text-body-secondary"
@@ -58,7 +58,7 @@
 
             <div class="col-lg-5 offset-lg-1 mb-3 p-0">
                 <form action="/search/advance" method="POST" class="search-input">
-                    <h5 class="border-bottom">找尋理想房屋</h5>
+                    <h5 class="fw-bold">找尋理想房屋</h5>
                     <p>幸福在不遠處</p>
                     <div class="input-group">
                         <span class="input-group-text p-0">
@@ -73,7 +73,7 @@
                         <input id="search-input" name="query" type="text"
                                class="form-control input-query rounded-0 shadow-none"
                                placeholder="社區名稱/地點街區">
-                        <button class="search-button btn btn-primary rounded-start-0 shadow-none" type="submit"
+                        <button class="search-button btn btn-warning rounded-start-0 shadow-none" type="submit"
                                 data-bs-toggle="modal" data-bs-target="#modal-search">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                  class="bi bi-search" viewBox="0 0 16 16">
@@ -87,8 +87,8 @@
             </div>
         </div>
 
-        <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
-            <p>&copy; 2023 whats2000, Inc. All rights reserved.</p>
+        <div class="border-secondary-subtle d-flex flex-column flex-sm-row justify-content-between py-4 mt-4 border-top">
+            <p class="text-muted">&copy; 2023 whats2000, Inc. All rights reserved.</p>
         </div>
     </div>
 </footer>
