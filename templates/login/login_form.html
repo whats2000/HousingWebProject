@@ -59,7 +59,7 @@
     email.removeClass("is-invalid");
 
     $(document).ready(function () {
-        email.submit(function (event) {
+        $("#login-form").submit(function (event) {
             event.preventDefault(); // 防止表單自動提交
 
             const formData = $(this).serialize(); // 取得表單資料
@@ -69,7 +69,6 @@
                 url: "/login",
                 data: formData,
                 success: function (response) {
-                    const email = $("#login-email");
                     if (response === 'success') {
                         email.removeClass("is-invalid");
                         location.reload();
